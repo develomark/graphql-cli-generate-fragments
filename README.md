@@ -26,8 +26,6 @@ Options:
 ### Graphql Fragments Generation
 Creates graphql fragments containing the fields for each type in the supplied schema.
 
-
-
 The first time you use fragment generation in your project, you need to provide an output folder for your fragments, and the generator you want to use:
 ```shell
 $ graphql generate-fragments -p database -o src/generated -g graphql --save
@@ -42,18 +40,200 @@ $ graphql prepare
 ✔ Fragments for project app written to src/generated/app.fragments.graphql
 ✔ Fragments for project database written to src/generated/database.fragments.js
 ```
-## Advanced topics
 
-### Available generators
+## Fragments Usage and Examples
+
+### Generated Fragments
+There are three types of fragments outputted by `graphql-cli-generate-fragments`.
+
+Given the schema:
+
+```graphql
+
+type User implements Node {
+  id: ID!
+  email: String!
+  password: String!
+  posts: [Post!]
+}
+
+type Post  {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  isPublished: Boolean!
+  title: String!
+  text: String!
+  author: User!
+}
+
+```
+
+The following fragments are generated:
+
+```graphql
+
+fragment User on User {
+  id
+  email
+  password
+  posts {
+    ...PostNoNesting
+  }
+}
+
+fragment Post on Post {
+  id
+  createdAt
+  updatedAt
+  isPublished
+  title
+  text
+  author {
+    ...UserNoNesting
+  }
+}
+
+fragment UserNoNesting on User {
+  id
+  email
+  password
+}
+
+fragment PostNoNesting on Post {
+  id
+  createdAt
+  updatedAt
+  isPublished
+  title
+  text
+}
+
+```
+
+Notice that we generate `_NoNesting` fragments, which do not include relations. Post and User would be recursive otherwise. If there is a recursive fragment you will receive a `"Cannot spread fragment within itself"` error.
+
+#### Deeply Nested Fragments
+When there is no recursive nesting of fragments it can be useful to include all related types queries. `_DeepNesting` fragments are generated for this use.
+
+Given the following schema:
+
+```graphql
+
+type User implements Node {
+  id: ID!
+  email: String!
+  password: String!
+  details: UserDetails!
+}
+
+type UserDetails {
+  firstName: String!
+  lastName: String!
+  address: Address!
+}
+
+type Address {
+  line1: String!
+  line2: String
+  county: String
+  postcode: String!
+}
+
+```
+
+The following is also generated:
+
+```graphql
+
+fragment UserDeepNesting on User {
+  id
+  email
+  password
+  details {
+    ...UserDetails
+  }
+}
+
+fragment UserDetailsDeepNesting on UserDetails {
+  firstName
+  lastName
+  address {
+    ...Address
+  }
+}
+
+fragment AddressDeepNesting on Address {
+  line1
+  line2
+  county
+  postcode
+}
+
+```
+
+### Use with Apollo Graphql Tag Loader
+
+By using [`graphql-tag/loader`](https://github.com/apollographql/graphql-tag) with Webpack you can import fragments into `.graphql` files:
+
+```graphql
+
+#import "../generated/app.fragments.graphql"
+
+query CurrentUser {
+  currentUser {
+    ...User
+  }
+}
+
+```
+
+or into javascript
+
+```javascript
+
+import { User } from "../generated/app.fragments.graphql"
+
+const query = gql`
+    query CurrentUser {
+    currentUser {
+      ...User
+    }
+  }
+
+  ${User}
+
+```
+
+### Use with JS
+
+If you are unable to use Webpack - fragments can be generated to javascript models (see below)
+
+```javascript
+
+import { User } from "../generated/app.fragments.js"
+
+const query = gql`
+    query CurrentUser {
+    currentUser {
+      ...User
+    }
+  }
+
+  ${User}
+
+```
+
+## Available generators
 The following generators are provided:
 
 | Generator    | Purpose                                      |
 | ------------ | -------------------------------------------- |
 | graphql | Generates fragments for all types in schema  |
-| js | Wraps the graphql and exports them for inclusion in javascript projects  |
+| js | Wraps the graphql and exports them for import in javascript  |
 
 
-### `graphql-config` extensions
+## `graphql-config` extensions
 
 To store the project configuration for fragment generation, `graphql-cli-generate-fragments` uses two extension keys in the `graphql-config` configuration file. These keys can be set manually, or using the `--save` parameter.
 ```diff
