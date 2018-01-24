@@ -1,0 +1,46 @@
+{
+  "name": "graphql-cli-generate-schema",
+  "version": "0.0.0-development",
+  "description": "Plugin for graphql-cli to generate fragments",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "scripts": {
+    "prepublish": "npm run build",
+    "build": "tsc -d",
+    "pretest": "npm run build",
+    "lint": "tslint src/**/*.ts",
+    "semantic-release": "semantic-release"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/supergraphql/graphql-cli-prepare.git"
+  },
+  "keywords": [
+    "graphql",
+    "graphql-cli"
+  ],
+  "author": "Mark Petty <develomark@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/fs-extra": "5.0.0",
+    "@types/inquirer": "0.0.36",
+    "@types/node": "9.3.0",
+    "@types/yargs": "10.0.1",
+    "graphql-config": "1.1.7",
+    "semantic-release": "12.2.4",
+    "tslint": "5.9.1",
+    "typescript": "2.6.2"
+  },
+  "release": {
+    "branch": "master"
+  },
+  "dependencies": {
+    "@types/graphql": "^0.12.1",
+    "chalk": "2.3.0",
+    "fs-extra": "5.0.0",
+    "graphql": "^0.12.3",
+    "graphql-import": "^0.4.0",
+    "graphql-static-binding": "0.8.0",
+    "lodash": "4.17.4"
+  }
+}
