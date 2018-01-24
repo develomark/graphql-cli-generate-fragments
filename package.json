@@ -1,5 +1,5 @@
 {
-  "name": "graphql-cli-generate-schema",
+  "name": "graphql-cli-generate-fragments",
   "version": "1.0.4",
   "description": "Plugin for graphql-cli to generate fragments",
   "main": "dist/index.js",
