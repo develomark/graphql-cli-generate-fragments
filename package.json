@@ -1,6 +1,6 @@
 {
   "name": "graphql-cli-generate-fragments",
-  "version": "1.0.6",
+  "version": "1.0.8",
   "description": "Plugin for graphql-cli to generate fragments",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/supergraphql/graphql-cli-prepare.git"
+    "url": "https://github.com/develomark/graphql-cli-generate-fragments.git"
   },
   "keywords": [
     "graphql",
@@ -39,8 +39,7 @@
     "chalk": "2.3.0",
     "fs-extra": "5.0.0",
     "graphql": "^0.12.3",
-    "graphql-import": "^0.4.0",
-    "graphql-static-binding": "0.8.0",
+    "graphql-import": "^0.4.1",
     "lodash": "4.17.4"
   }
 }
