@@ -1,4 +1,4 @@
-# graphql-cli-generate-fragments [![npm](https://img.shields.io/npm/v/graphql-cli-generate-fragments.svg?style=flat-square)(https://www.npmjs.com/package/graphql-cli-generate-fragments)
+# graphql-cli-generate-fragments [![npm](https://img.shields.io/npm/v/graphql-cli-generate-fragments.svg?style=flat-square)](https://www.npmjs.com/package/graphql-cli-generate-fragments)
 
 Generates GraphQL fragments for each type in the project schema.
 
