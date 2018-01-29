@@ -28,6 +28,8 @@ Options:
 ### Graphql Fragments Generation
 Creates graphql fragments containing the fields for each type in the supplied schema.
 
+For more information on fragments and their use: (https://www.apollographql.com/docs/react/features/fragments.html)
+
 The first time you use fragment generation in your project, you need to provide an output folder for your fragments, and the generator you want to use:
 ```shell
 $ graphql generate-fragments -p database -o src/generated -g graphql --save
@@ -38,7 +40,7 @@ This will also save the configuration in your `.graphqlconfig` file (see below).
 ### Automating `graphql generate-fragments`
 After you have set up fragment generation for all projects, you can simply run `graphql generate-fragments` without any parameters to process all projects:
 ```shell
-$ graphql prepare
+$ graphql generate-fragments
 ✔ Fragments for project app written to src/generated/app.fragments.graphql
 ✔ Fragments for project database written to src/generated/database.fragments.js
 ```
