@@ -248,9 +248,9 @@ projects:
     extensions:
       endpoints:
         default: 'http://localhost:4000'
-+       prepare-bundle: 
-+         src/generated/app.fragments.js
-+         generator: js
++   generate-fragments:
++     output: src/generated/app.fragments.js
++     generator: js
   database:
     schemaPath: src/generated/prisma.graphql
     extensions:
