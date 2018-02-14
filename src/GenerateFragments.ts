@@ -455,12 +455,22 @@ ${fragment}`
       }
     }
 
+    console.log(schemaPath)
+
+  
+    const getExtension = str => str.split('.').pop()
+
+    if(getExtension(schemaPath) !== 'graphql' && getExtension(schemaPath) !== 'gql'){
+      throw new Error(`Schema has an extension of '.${getExtension(schemaPath)}'
+- Only '.graphql' schema's are supported by 'generate-fragments'.`)
+    }
+
     if (fs.existsSync(schemaPath!)) {
       return schemaPath!;
     } else {
       throw new Error(
         `Schema '${schemaPath!}' not found.${
-          bundleDefined ? " Did you run bundle first?" : ""
+          bundleDefined ? " Did you run bundle/get-schema first?" : ""
         }`
       );
     }
