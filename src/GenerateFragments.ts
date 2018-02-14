@@ -400,7 +400,9 @@ ${fragment}`
         " {" +
         this.indentedLine(indent + 1) +
         "..." +
-        `${(fragmentType === this.fragmentType.DEFAULT &&
+        `${(fragmentType === this.fragmentType.DEEP &&
+          typeName + this.fragmentType.DEEP) ||
+          (fragmentType === this.fragmentType.DEFAULT &&
           typeName + this.fragmentType.NO_RELATIONS) ||
           typeName + this.fragmentType.DEFAULT}` +
         this.indentedLine(indent) +
