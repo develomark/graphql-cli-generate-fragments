@@ -1,6 +1,6 @@
 {
   "name": "graphql-cli-generate-fragments",
-  "version": "1.1.9",
+  "version": "1.1.10",
   "description": "Plugin for graphql-cli to generate fragments",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -17,31 +17,35 @@
   },
   "keywords": [
     "graphql",
-    "graphql-cli"
+    "graphql-cli",
+    "graphql-cli-generate-fragments",
+    "apollo",
+    "prisma",
+    "graphcool"
   ],
   "author": "Mark Petty <develomark@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "@types/fs-extra": "5.0.0",
-    "@types/inquirer": "0.0.36",
-    "@types/node": "9.3.0",
-    "@types/yargs": "10.0.1",
+    "@types/fs-extra": "^5.0.2",
+    "@types/inquirer": "0.0.41",
+    "@types/node": "^9.6.5",
+    "@types/yargs": "^11.0.0",
     "contributor": "^0.1.25",
-    "graphql-config": "1.1.7",
-    "semantic-release": "12.2.4",
-    "tslint": "5.9.1",
-    "typescript": "2.6.2"
+    "graphql-config": "^2.0.1",
+    "semantic-release": "^15.1.7",
+    "tslint": "^5.9.1",
+    "typescript": "^2.8.1"
   },
   "release": {
     "branch": "master"
   },
   "dependencies": {
-    "@types/graphql": "^0.12.1",
+    "@types/graphql": "^0.13.0",
     "chalk": "2.3.0",
-    "fs-extra": "5.0.0",
-    "graphql": "^0.12.3",
-    "graphql-import": "^0.4.1",
-    "lodash": "4.17.4"
+    "fs-extra": "^5.0.0",
+    "graphql": "^0.13.2",
+    "graphql-import": "^0.5.0",
+    "lodash": "^4.17.5"
   },
   "contributors": [
     {

@@ -13,6 +13,7 @@ import {
   ObjectTypeDefinitionNode,
   OperationTypeDefinitionNode,
   GraphQLObjectType,
+  GraphQLNamedType,
   GraphQLFieldMap,
   parse
 } from "graphql";
@@ -184,25 +185,29 @@ export class GenerateFragments {
     const typeNames = Object.keys(ast.getTypeMap())
       .filter(
         typeName =>
-          ast.getType(typeName).constructor.name === "GraphQLObjectType"
+          ast.getType(typeName) !== undefined
+      )
+      .filter(
+        typeName =>
+          (ast.getType(typeName) as GraphQLNamedType).constructor.name === "GraphQLObjectType"
       )
       .filter(typeName => !typeName.startsWith("__"))
-      .filter(typeName => typeName !== ast.getQueryType().name)
+      .filter(typeName => typeName !== (ast.getQueryType() as GraphQLObjectType).name)
       .filter(
         typeName =>
           ast.getMutationType()
-            ? typeName !== ast.getMutationType()!.name
+            ? typeName !== (ast.getMutationType() as GraphQLObjectType)!.name
             : true
       )
       .filter(
         typeName =>
           ast.getSubscriptionType()
-            ? typeName !== ast.getSubscriptionType()!.name
+            ? typeName !== (ast.getSubscriptionType() as GraphQLObjectType)!.name
             : true
       )
       .sort(
         (a, b) =>
-          ast.getType(a).constructor.name < ast.getType(b).constructor.name
+          (ast.getType(a) as GraphQLNamedType).constructor.name < (ast.getType(b) as GraphQLNamedType).constructor.name
             ? -1
             : 1
       );
@@ -351,7 +356,7 @@ ${fragment}`
     if (constructorName === "Object")
       constructorName =
         (field.type.name &&
-          ast.getType(field.type.name.value).constructor.name) ||
+          (ast.getType(field.type.name.value) as GraphQLNamedType).constructor.name) ||
         null;
 
     if (constructorName === "GraphQLList") {
@@ -362,20 +367,20 @@ ${fragment}`
       if (field === null) {
         throw new Error(`Schema malformed - list`);
       }
-      constructorName = ast.getType(field.name.value).constructor.name;
+      constructorName = (ast.getType(field.name.value) as GraphQLNamedType).constructor.name;
     }
 
     if (constructorName === "GraphQLNonNull" || field.kind === "NonNullType") {
       field = (field.astNode.type && field.astNode.type) || field.type;
       constructorName =
         (field.type.name &&
-          ast.getType(field.type.name.value).constructor.name) ||
+          (ast.getType(field.type.name.value) as GraphQLNamedType).constructor.name) ||
         null;
       if (constructorName === null) {
         field = (field.type && field.type) || null;
         constructorName =
           (field.type.name &&
-            ast.getType(field.type.name.value).constructor.name) ||
+            (ast.getType(field.type.name.value) as GraphQLNamedType).constructor.name) ||
           null;
       }
     }
