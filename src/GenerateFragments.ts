@@ -388,7 +388,7 @@ ${fragment}`
     }
 
     if (constructorName === "GraphQLObjectType") {
-      if (fragmentType === this.fragmentType.NO_RELATIONS) return null;
+      // if (fragmentType === this.fragmentType.NO_RELATIONS) return null;
       let typeName = null;
       // if(field.name !== undefined)
       typeName =
