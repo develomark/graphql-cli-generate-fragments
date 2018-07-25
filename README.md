@@ -1,4 +1,4 @@
-# graphql-cli-generate-fragments [![npm](https://img.shields.io/npm/v/graphql-cli-generate-fragments.svg?style=flat-square)](https://www.npmjs.com/package/graphql-cli-generate-fragments)
+# graphql-cli-generate-fragments [![npm](https://img.shields.io/npm/v/graphql-cli-generate-fragments.svg)](https://www.npmjs.com/package/graphql-cli-generate-fragments)
 
 Generates GraphQL fragments for each type in the project schema.
 
@@ -272,6 +272,6 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 <hr>
 <p align="center">
-  <img src="https://img.shields.io/badge/built-with_♡-red.svg?style=for-the-badge"/><a href="https://github.com/develomark" target="-_blank"><img src="https://img.shields.io/badge/by-develomark-yellow.svg?style=for-the-badge"/></a>
+  <img src="https://img.shields.io/badge/built-with_♡-red.svg?style=for-the-badge"/><a href="https://github.com/develomark" target="-_blank"><img src="https://img.shields.io/badge/by-develomark-yellow.svg?longCache=true&style=for-the-badge"/></a>
 </p>
 
