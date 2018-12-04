@@ -192,7 +192,7 @@ export class GenerateFragments {
           (ast.getType(typeName) as GraphQLNamedType).constructor.name === "GraphQLObjectType"
       )
       .filter(typeName => !typeName.startsWith("__"))
-      .filter(typeName => typeName !== (ast.getQueryType() as GraphQLObjectType).name)
+      .filter(typeName => ast.getQueryType() ? typeName !== (ast.getQueryType() as GraphQLObjectType).name : true)
       .filter(
         typeName =>
           ast.getMutationType()
